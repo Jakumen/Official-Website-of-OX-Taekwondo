@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/payment.styles.css">
+    <title>OX Taekwondo Martial Arts</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="../Photo/OX_LOGOO.png" alt="OX Taekwondo Logo" class="logo">
+            <h1>OX TAEKWONDO MARTIAL ARTS</h1>
+        </header>
+        <main>
+            <h2>Join now and start training.</h2>
+            <div class="tabs">
+                <button class="tab-button active" onclick="selectTab('monthly')">
+                    Monthly <span class="checkmark">✔</span>
+                </button>
+                <button class="tab-button" onclick="selectTab('quarterly')">
+                    Quarterly <span class="checkmark">✔</span>
+                </button>
+                <button class="tab-button" onclick="selectTab('yearly')">
+                    Yearly <span class="checkmark">✔</span>
+                </button>
+            </div>
+            <div class="summary">
+                <p><strong>Membership Summary:</strong></p>
+                <div class="summary-item">
+                    <span id="membershipType">Monthly</span>
+                    <span id="membershipAmount">PHP 2000.00</span>
+                </div>
+                <div class="summary-item">
+                    <span>Membership</span>
+                    <span>PHP 500.00</span>
+                </div>
+                <p class="note">Membership is One-Time Payment Only!</p>
+                <hr>
+                <div class="total">
+                    <span>Total:</span>
+                    <span id="totalAmount">PHP 2500.00</span>
+                </div>
+                <form id="paymentForm" action="../app/Http/Controllers/paymentController.php" method="POST">
+                    <input type="hidden" name="plan" id="plan">
+                    <input type="hidden" name="amount" id="amount">
+                    <button type="submit" class="join-button">Continue to join</button>
+                </form>
+                
+            </div>
+        </main>
+    </div>
+    <script src="../script/p.script.js"></script>
+</body>
+</html>

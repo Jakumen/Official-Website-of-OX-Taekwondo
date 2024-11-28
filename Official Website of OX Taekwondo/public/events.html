@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('../Photo/background26.jpg'); /* Replace with your background image */
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        .title {
+            font-size: 36px;
+            color: #b22222;
+            margin-bottom: 20px;
+        }
+        .events {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .event {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .event img {
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .heading-section {
+            margin-top: 50px;
+            background-color: #e0e0e0;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .class-title {
+            font-size: 30px;
+            color: #AD2626;
+            font-weight: bold;
+            text-shadow: 2px 2px 2px #555;
+            padding: 10px 0;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="heading-section">
+            <h1 class="class-title">EVENTS</h1>
+        </section>
+        <div class="events" id="event-images"></div>
+    </div>
+
+    <script>
+        // Retrieve events data from localStorage
+        const events = JSON.parse(localStorage.getItem('events')) || [];
+        const eventImagesContainer = document.getElementById('event-images');
+
+        if (events.length === 0) {
+            eventImagesContainer.innerHTML = '<p>No events available.</p>';
+        } else {
+            events.forEach(event => {
+                const eventImageDiv = document.createElement('div');
+                eventImageDiv.classList.add('event');
+                eventImageDiv.innerHTML = `
+                    <img src="${event.photo}" alt="${event.name}" onclick="openEventPage('N.Events.html')">
+                `;
+                eventImagesContainer.appendChild(eventImageDiv);
+            });
+        }
+
+        function openEventPage(url) {
+            window.open(url, '_top');
+        }
+    </script>
+</body>
+</html>

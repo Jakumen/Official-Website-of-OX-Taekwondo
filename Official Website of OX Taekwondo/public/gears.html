@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OX TKD Shirt</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navdiv">
+            <img src="../Photo/OX_LOGOO.png" alt="logo" width="50">
+            <div class="logo"><a href="index.html">OX Taekwondo Martial Arts</a></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="#">Classes ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="BeginnersClass.html">Beginners Class</a></li>
+                        <li><a href="#">Novice Class</a></li>
+                        <li><a href="#">Advance Class</a></li>
+                        <li><a href="OffSched.html">Class Schedule</a></li>
+                    </ul>
+                </li>
+                <li><a href="N.Events.html">Events</a></li>
+                <li><a href="#">Achievements</a></li>
+                <li>
+                    <a href="#">Shop ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="apparel.html">Apparel</a></li>
+                        <li><a href="gear.html">Gears</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact</a></li>
+                <li>
+                    <a href="#">About ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="instructor.html">Instructors</a></li>
+                        <li><a href="benefits.html">Benefits</a></li>
+                        <li><a href="testimonial.html">Testimonials</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <button class="back-button" onclick="goBack()">Back</button>
+        <div class="details">
+            <h2>Details</h2>
+            <img id="detail-image" src="" alt="OX TKD Shirt">
+            <img id="size-chart" src="size-chart.jpg" alt="Size Chart" style="display: none;">
+            <p id="detail-stock"></p>
+        </div>
+        <div class="info">
+            <div class="cart" onclick="goToCart()">🛒</div>
+            <h1 id="detail-title"></h1>
+            <p id="detail-price"></p>
+            <div class="sizes">
+                <button class="size-button" onclick="selectSize(this)">XXS</button>
+                <button class="size-button" onclick="selectSize(this)">XS</button>
+                <button class="size-button" onclick="selectSize(this)">S</button>
+                <button class="size-button" onclick="selectSize(this)">M</button>
+                <button class="size-button" onclick="selectSize(this)">L</button>
+                <button class="size-button" onclick="selectSize(this)">XL</button>
+            </div>
+            <div class="actions">
+                <button id="buyNow" onclick="buyNow()">Buy Now</button>
+                <button id="addToCart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Function to get query parameter
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+    
+        // Go back to the previous page
+        function goBack() {
+            window.location.href = 'gear.html';
+        }
+    
+        // Handle size selection
+        function selectSize(button) {
+            const sizeButtons = document.querySelectorAll('.size-button');
+            sizeButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        }
+    
+        // Add product details to localStorage
+        document.getElementById('addToCart').addEventListener('click', () => {
+            const selectedSize = document.querySelector('.size-button.active');
+            if (!selectedSize) {
+                alert('Please select a size before adding to cart.');
+                return;
+            }
+    
+            const product = {
+                title: decodeURIComponent(getQueryParam('title')),
+                price: getQueryParam('price'),
+                stock: getQueryParam('stock'),
+                size: selectedSize.innerText,
+                image: getQueryParam('image')
+            };
+    
+            // Retrieve existing cart from localStorage or create a new array
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(product);
+    
+            // Save updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+    
+            alert(`${product.title} added to cart!`);
+        });
+    
+        // Set product details dynamically from URL parameters
+        document.getElementById('detail-image').src = getQueryParam('image');
+        document.getElementById('detail-title').innerText = decodeURIComponent(getQueryParam('title'));
+        document.getElementById('detail-price').innerText = `PHP ${getQueryParam('price')}`;
+        document.getElementById('detail-stock').innerText = `Stock: ${getQueryParam('stock')}`;
+    
+        // Function to initiate buy now action
+        function buyNow() {
+            const selectedSize = document.querySelector('.size-button.active');
+            if (!selectedSize) {
+                alert('Please select a size before proceeding.');
+                return;
+            }
+    
+            const price = getQueryParam('price') * 100; // Convert to centavos
+            const title = decodeURIComponent(getQueryParam('title')) + ' - ' + selectedSize.innerText;
+    
+            makePayment(price, title);
+        }
+    
+        // Function to handle payment process
+        function makePayment(amount, description) {
+            fetch("https://api.paymongo.com/v1/links", {
+                method: "POST",
+                headers: {
+                    "accept": "application/json",
+                    "authorization": "Basic c2tfdGVzdF9uWjJ6anlnSlBUU3pONFY3d0s3V21Cclg6",
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify({
+                    data: {
+                        attributes: {
+                            amount: amount,
+                            description: description,
+                            remarks: 'Product Purchase'
+                        }
+                    }
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.data && data.data.attributes.checkout_url) {
+                    window.location.href = data.data.attributes.checkout_url;
+                } else {
+                    alert("Failed to get the checkout URL from response.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+    
+        function goToCart() {
+            window.location.href = 'cart.html';
+        }
+    </script>
+    
+</body>
+</html>

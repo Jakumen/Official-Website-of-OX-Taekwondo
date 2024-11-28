@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Form</title>
+    <link rel="stylesheet" href="../private css/add.event.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-user-shield"></i> Admin</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="Add.Event.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+            <li><a href="#"><i class="fas fa-trophy"></i> Achievements</a></li>
+            <li><a href="admin_gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+            <li class="dropdown">
+                <a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fas fa-tshirt"></i> Apparel</a></li>
+                    <li><a href="#"><i class="fas fa-box-open"></i> Gears</a></li>
+                    <li><a href="#"><i class="fas fa-subscript"></i> Subscription</a></li>
+                    <li><a href="#"><i class="fas fa-box"></i> Product</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="event-form">
+            <h2>Add Event</h2>
+            <div class="upload-photo">
+                <label for="upload-photo">Add Picture</label>
+                <input type="file" id="upload-photo" accept="image/*">
+                <button class="remove-photo">Remove</button>
+            </div>
+            <div id="photo-preview-container">
+                <img id="photo-preview" src="" alt="Event Photo" style="display: none;">
+            </div>
+            <input type="text" id="event-name" placeholder="Add Name of Event">
+            <input type="date" id="event-date">
+            <input type="text" id="event-location" placeholder="Where">
+            <input type="time" id="event-time">
+            <input type="text" id="event-belt" placeholder="Belt">
+            <button class="add-event">Add</button>
+            <input type="text" id="search-id" placeholder="Enter Event ID">
+            <button class="search-event">Search</button>
+            <button class="delete-event">Remove</button>
+        </div>
+        
+        <div class="event-list-container">
+            <h3>Event List</h3>
+            <div id="event-list"></div>
+        </div>
+    </div>
+
+    <script>
+        // Display uploaded photo
+        document.getElementById('upload-photo').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const photoPreview = document.getElementById('photo-preview');
+                photoPreview.src = e.target.result;
+                photoPreview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+        // Remove photo
+        document.querySelector('.remove-photo').addEventListener('click', function() {
+            document.getElementById('upload-photo').value = '';
+            document.getElementById('photo-preview').style.display = 'none';
+        });
+
+        // Add event
+        document.querySelector('.add-event').addEventListener('click', function() {
+            const eventName = document.getElementById('event-name').value;
+            const eventDate = document.getElementById('event-date').value;
+            const eventLocation = document.getElementById('event-location').value;
+            const eventTime = document.getElementById('event-time').value;
+            const eventBelt = document.getElementById('event-belt').value;
+            const eventPhoto = document.getElementById('photo-preview').src;
+
+            if (!eventPhoto) {
+                alert('Please upload a photo for the event.');
+                return;
+            }
+
+            // Generate unique event ID
+            let events = JSON.parse(localStorage.getItem('events')) || [];
+            const eventId = events.length ? events[events.length - 1].id + 1 : 1;
+
+            const event = {
+                id: eventId,
+                name: eventName,
+                date: eventDate,
+                location: eventLocation,
+                time: eventTime,
+                belt: eventBelt,
+                photo: eventPhoto
+            };
+
+            // Save event to localStorage
+            events.push(event);
+            localStorage.setItem('events', JSON.stringify(events));
+
+            // Display event
+            displayEvent(event);
+
+            // Reset form
+            resetForm();
+            alert('Event added successfully!');
+        });
+
+        // Function to display an event
+        function displayEvent(event) {
+            console.log('Displaying event:', event); // Debugging step
+
+            const eventList = document.getElementById('event-list');
+            const eventItem = document.createElement('div');
+            eventItem.classList.add('event-item');
+            eventItem.setAttribute('data-id', event.id); // Add data-id attribute
+            eventItem.innerHTML = `
+                <div class="event-photo"><img src="${event.photo}" alt="Event Photo" style="width: 100px; height: 100px;"></div>
+                <div class="event-details"><strong>ID:</strong> ${event.id}</div>
+                <div class="event-details"><strong>Name:</strong> ${event.name}</div>
+                <div class="event-details"><strong>Date:</strong> ${new Date(event.date).toLocaleDateString()}</div>
+                <div class="event-details"><strong>Location:</strong> ${event.location}</div>
+                <div class="event-details"><strong>Time:</strong> ${event.time}</div>
+                <div class="event-details"><strong>Belt:</strong> ${event.belt}</div>
+            `;
+            eventList.appendChild(eventItem);
+        }
+
+        // Function to reset the form
+        function resetForm() {
+            document.getElementById('event-name').value = '';
+            document.getElementById('event-date').value = '';
+            document.getElementById('event-location').value = '';
+            document.getElementById('event-time').value = '';
+            document.getElementById('event-belt').value = '';
+            document.getElementById('upload-photo').value = '';
+            document.getElementById('photo-preview').style.display = 'none';
+        }
+
+        // Load and display events on page load
+        window.onload = function() {
+            const events = JSON.parse(localStorage.getItem('events')) || [];
+            events.forEach(displayEvent);
+        };
+
+        // Search event
+        document.querySelector('.search-event').addEventListener('click', function() {
+            const searchId = document.getElementById('search-id').value;
+            let events = JSON.parse(localStorage.getItem('events')) || [];
+            const event = events.find(event => event.id == searchId);
+
+            if (event) {
+                alert(`Event found:\nID: ${event.id}\nName: ${event.name}\nDate: ${new Date(event.date).toLocaleDateString()}\nLocation: ${event.location}\nTime: ${event.time}\nBelt: ${event.belt}`);
+            } else {
+                alert('Event ID not found!');
+            }
+        });
+
+        // Remove event
+        document.querySelector('.delete-event').addEventListener('click', function() {
+            const searchId = document.getElementById('search-id').value;
+            let events = JSON.parse(localStorage.getItem('events')) || [];
+            const eventIndex = events.findIndex(event => event.id == searchId);
+
+            if (eventIndex !== -1) {
+                events.splice(eventIndex, 1); // Remove event from array
+                localStorage.setItem('events', JSON.stringify(events)); // Save updated array to localStorage
+
+                // Remove event from display
+                const eventItem = document.querySelector(`.event-item[data-id="${searchId}"]`);
+                if (eventItem) {
+                    eventItem.remove();
+                }
+
+                alert('Event removed successfully!');
+            } else {
+                alert('Event ID not found!');
+            }
+        });
+    </script>
+</body>
+</html>

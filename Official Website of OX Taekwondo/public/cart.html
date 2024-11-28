@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="../css/cart.css">
+</head>
+<body>
+  <div class="cart-container">
+    <button class="back-button" onclick="goBack()">Back</button>
+    <h1><i class="cart-icon">🛒</i> Cart</h1>
+    <table>
+      <thead>
+        <tr>
+          <th><input type="checkbox"></th>
+          <th>Apparel/Gears</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody id="cart-items">
+      </tbody>
+    </table>
+    <div class="cart-total">
+      <h2>Total Amount: <span id="cart-total">PHP 0.00</span></h2>
+    </div>
+    <button class="checkoutButton" onclick="checkout()">Checkout</button>
+  </div>
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+const cartItems = document.getElementById('cart-items');
+let totalPrice = 0;
+let totalItems = 0;
+
+// Update image paths in the cart
+cart.forEach(product => {
+    if (!product.image.startsWith('../Photo/')) {
+        product.image = `../Photo/${product.image}`;
+    }
+});
+
+// Save the updated cart back to localStorage
+localStorage.setItem('cart', JSON.stringify(cart));
+
+// Render cart items dynamically
+cart.forEach((product, index) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td><input type="checkbox" class="item-checkbox" data-index="${index}" checked></td> <!-- Added class and data-index -->
+        <td>
+            <div class="item">
+                <img src="${product.image}" alt="${product.title}">
+                <div>
+                    <strong>${product.title}</strong>
+                    <p>Variation: ${product.size}</p>
+                </div>
+            </div>
+        </td>
+        <td>PHP ${parseFloat(product.price).toFixed(2)}</td>
+        <td>
+            <button class="qty-btn" onclick="decreaseQty(${index})">-</button>
+            <span class="quantity" id="quantity-${index}">1</span>
+            <button class="qty-btn" onclick="increaseQty(${index})">+</button>
+        </td>
+        <td class="total-price" id="total-price-${index}">PHP ${parseFloat(product.price).toFixed(2)}</td>
+        <td><button class="delete-btn" onclick="removeItem(${index})">🗑️</button></td>
+    `;
+    cartItems.appendChild(row);
+
+    totalPrice += parseFloat(product.price);
+    totalItems++;
+});
+
+document.getElementById('cart-total').innerText = `PHP ${totalPrice.toFixed(2)} (${totalItems} Items)`;
+
+// Function to update the total price and items
+function updateCartTotal() {
+    totalPrice = 0;
+    totalItems = 0;
+
+    document.querySelectorAll(".quantity").forEach((quantityElement, index) => {
+        const checkbox = document.querySelector(`.item-checkbox[data-index="${index}"]`); // Added to get the checkbox element
+        if (checkbox.checked) { // Added condition to check if the item is checked
+            const quantity = parseInt(quantityElement.innerText, 10);
+            const productPrice = parseFloat(cart[index].price);
+            const itemTotal = quantity * productPrice;
+
+            document.getElementById(`total-price-${index}`).innerText = `PHP ${itemTotal.toFixed(2)}`;
+            totalPrice += itemTotal;
+            totalItems += quantity;
+        } 
+    });
+
+    document.getElementById('cart-total').innerText = `PHP ${totalPrice.toFixed(2)} (${totalItems} Items)`;
+}
+
+// Increase quantity
+function increaseQty(index) {
+    const quantityElement = document.getElementById(`quantity-${index}`);
+    let quantity = parseInt(quantityElement.innerText, 10);
+    quantity++;
+    quantityElement.innerText = quantity;
+
+    updateCartTotal();
+}
+
+// Decrease quantity
+function decreaseQty(index) {
+    const quantityElement = document.getElementById(`quantity-${index}`);
+    let quantity = parseInt(quantityElement.innerText, 10);
+
+    if (quantity > 1) {
+        quantity--;
+        quantityElement.innerText = quantity;
+        updateCartTotal();
+    } else {
+        alert("Quantity cannot be less than 1.");
+    }
+}
+
+// Remove item from cart
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    location.reload(); // Refresh to update cart
+}
+
+// Update total when checkbox is checked/unchecked
+document.querySelectorAll('.item-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('change', updateCartTotal); // Added event listener for checkbox change
+});
+
+function goBack() {
+    if (document.referrer) {
+        window.location.href = document.referrer;
+    } else {
+        window.history.back();
+    }
+}
+
+    // Handle checkout process
+    function checkout() {
+        if (totalPrice === 0) {
+            alert("Your cart is empty.");
+            return;
+        }
+
+        makePayment(totalPrice * 100, `Total amount for ${totalItems} items`); // Convert to centavos
+    }
+
+    // Function to handle payment process
+    function makePayment(amount, description) {
+        fetch("https://api.paymongo.com/v1/links", {
+            method: "POST",
+            headers: {
+                "accept": "application/json",
+                "authorization": "Basic c2tfdGVzdF9uWjJ6anlnSlBUU3pONFY3d0s3V21Cclg6",
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                data: {
+                    attributes: {
+                        amount: amount,
+                        description: description,
+                        remarks: 'Shopping Cart Checkout'
+                    }
+                }
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.data && data.data.attributes.checkout_url) {
+                window.location.href = data.data.attributes.checkout_url;
+            } else {
+                alert("Failed to get the checkout URL from response.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    }
+</script>
+
+</body>
+</html>

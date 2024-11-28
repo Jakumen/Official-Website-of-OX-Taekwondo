@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Events</title>
+</head>
+<body>
+    <style>
+        *{
+    padding: 0%;
+    margin: 0%;
+    box-sizing:border-box;
+    font-family: Graduate;
+    text-decoration: none;
+}
+.text {
+    font-size: 40px;
+    -webkit-text-stroke: 1px black;
+    color: white;
+    position: flex;
+    display: block;
+    padding: 80px 80px;
+    height: 52vh;
+}
+.text p{
+    color: white;
+    font-size: 20px;
+    font-weight: 20px;
+    position: flex;
+    display: inline;
+    
+ 
+}
+/*For the box in the join now*/
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0);
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 10%;
+}
+.content{
+    text-align: left;
+}
+.content h1{
+    font-size: 25px;
+    color: black;
+    margin-bottom: 50px;
+}
+.background-clip{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+@media (min-aspect-ratio: 16/9) {
+    .background-clip{
+        width: 100%;
+        height: auto;
+    }
+}
+@media (max-aspect-ratio: 16/9) {
+    .background-clip{
+        width: auto;
+        height: 100%;
+    }
+}
+
+.hero {
+    margin-top: 5%;
+    background: rgb(173,38,38);
+    background: linear-gradient(180deg, rgba(173,38,38,1) 26%, rgba(0,115,123,1) 100%); 
+    background-size: cover;
+    background-position: center;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+ }
+ 
+ .hero-content {
+    max-width: 300px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0);
+ }
+ 
+ .hero-content h1 {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 20px;
+ }
+ 
+ .hero-content p {
+    color: white;
+    font-size: 1em;
+    margin-bottom: 20px;
+ }
+ .cta {
+    background: white;
+    color: black;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 10px 0;
+ }
+ 
+    </style>
+
+    <div class = "container">
+        <video autoplay loop muted play-inline class = "background-clip">
+            <source src="Promotion.mp4" type="video/mp4">
+        </video>
+        <section class="hero">
+            <div class="hero-content">
+                <img src="../Photo/OX_LOGOO.png" alt = "logo" width="100">
+                <h1>Ready to Start Your Martial Arts Journey?</h1>
+                <p>Simply click the button below to view an available schedule. Experience the energy, camaraderie, and transformative benefits of our taekowado program firsthand.</p>
+                <p>All levels and beginners are welcome.</p>
+                <a href="index.html#section" class="cta" target="_top">Join Now</a>
+                
+            </div>
+            
+        </section>   
+        <section> 
+            <div class = "text">
+                <div class = "right">
+                    <h1>
+                        Welcome to the OX Taekwondo<br/>
+                    </h1>
+                    <p>
+                        Experience the dynamic art of Taekwondo at our welcoming studio. 
+                        Discover the power, discipline, and joy of this ancient Korean martial art.
+                    </p>
+                </div>
+        </section>
+    </div>
+</body>

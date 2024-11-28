@@ -1,0 +1,81 @@
+Imports MySql.Data.MySqlClient
+
+Public Class Form1
+    Private sourceConnectionString As String = "Source Database Connection String"
+    Private destinationConnectionString As String = "Destination Database Connection String"
+    Private connectionSource As MySqlConnection
+    Private connectionDestination As MySqlConnection
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Initialize the MySqlConnection for source and destination databases
+        connectionSource = New MySqlConnection(sourceConnectionString)
+        connectionDestination = New MySqlConnection(destinationConnectionString)
+
+        ' Load initial data or perform any necessary setup
+        LoadSourceData()
+    End Sub
+
+    Private Sub LoadSourceData()
+        ' Open the connection to the source database
+        connectionSource.Open()
+
+        ' Query to retrieve data from the source table
+        Dim query As String = "SELECT * FROM source_table"
+
+        ' Create a MySqlCommand for the source database
+        Dim cmd As New MySqlCommand(query, connectionSource)
+
+        ' Create a DataTable to hold the results
+        Dim dataTable As New DataTable()
+
+        ' Use a DataAdapter to fill the DataTable
+        Dim adapter As New MySqlDataAdapter(cmd)
+        adapter.Fill(dataTable)
+
+        ' Close the connection to the source database
+        connectionSource.Close()
+
+        ' Bind the DataTable to relevant controls (e.g., ListBox)
+        ListBox1.DataSource = dataTable
+        ListBox1.DisplayMember = "name" ' Assuming "name" is a column in the source_table
+    End Sub
+
+    Private Sub btnMove_Click(sender As Object, e As EventArgs) Handles btnMove.Click
+        If ListBox1.SelectedItem IsNot Nothing Then
+            ' Get the selected item from the ListBox
+            Dim selectedName As String = ListBox1.SelectedItem.ToString()
+
+            ' Open the connection to the source database
+            connectionSource.Open()
+
+            ' Query to delete the record from the source table
+            Dim deleteQuery As String = "DELETE FROM source_table WHERE name = @name"
+            Dim deleteCmd As New MySqlCommand(deleteQuery, connectionSource)
+            deleteCmd.Parameters.AddWithValue("@name", selectedName)
+            deleteCmd.ExecuteNonQuery()
+
+            ' Close the connection to the source database
+            connectionSource.Close()
+
+            ' Open the connection to the destination database
+            connectionDestination.Open()
+
+            ' Query to insert the record into the destination table
+            Dim insertQuery As String = "INSERT INTO destination_table (name) VALUES (@name)"
+            Dim insertCmd As New MySqlCommand(insertQuery, connectionDestination)
+            insertCmd.Parameters.AddWithValue("@name", selectedName)
+            insertCmd.ExecuteNonQuery()
+
+            ' Close the connection to the destination database
+            connectionDestination.Close()
+
+            ' Reload data in ListBox
+            LoadSourceData()
+
+            ' Display a message or perform any other post-move actions
+            MessageBox.Show("Record moved successfully!")
+        Else
+            MessageBox.Show("Please select a record to move.")
+        End If
+    End Sub
+End Class

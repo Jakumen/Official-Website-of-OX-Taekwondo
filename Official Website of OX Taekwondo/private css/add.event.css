@@ -1,0 +1,171 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 20px;
+    background-color: #444;
+    text-align: center;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.sidebar-menu li {
+    border-bottom: 1px solid #444;
+}
+
+.sidebar-menu li a {
+    display: block;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-menu li a i {
+    margin-right: 10px;
+}
+
+.sidebar-menu li a:hover {
+    background-color: #555;
+}
+
+.dropdown-menu {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #444;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li a {
+    padding: 10px 20px;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: auto;
+}
+
+.event-form, .event-list-container {
+    background-color: white;
+    margin-left: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+
+}
+
+.event-form h2, .event-list-container h3 {
+    margin-top: 0;
+}
+
+.event-form input[type="text"],
+.event-form input[type="date"],
+.event-form input[type="time"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.upload-photo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.upload-photo button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.upload-photo button.remove-photo {
+    background-color: #dc3545;
+}
+
+.upload-photo input[type="file"] {
+    display: none;
+}
+
+.upload-photo label {
+    cursor: pointer;
+}
+
+#photo-preview-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#photo-preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.add-event {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.event-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.event-item .event-details {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.event-item .event-photo img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 4px;
+}

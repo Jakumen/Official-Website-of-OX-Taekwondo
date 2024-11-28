@@ -1,0 +1,161 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing:border-box;
+    font-family: Graduate;
+    text-decoration: none;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;  /* Set a very high z-index to stay on top of everything */
+    background: white;
+    color: black;
+    padding: 0px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Navbar Links Hover Effect */
+.navbar a:hover {
+    background: #b6b6b6;
+}
+
+/* Navigation Bar Container */
+.navdiv {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo Link Styles */
+.logo a {
+    font-size: 25px;
+    font-weight: 600;
+    color: black;
+}
+
+/* List Item Styles */
+li {
+    list-style: none;
+    display: inline-block;
+    align-items: center;
+}
+
+/* List Links */
+li a {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Main Navbar Menu List */
+ul {
+    list-style: none;
+    background: white;
+}
+
+/* List Item Container */
+ul li {
+    display: inline-block;
+    position: relative;  /* Ensures dropdown can be positioned correctly */
+}
+
+/* Dropdown Links */
+ul li a {
+    display: block;
+    padding: 20px 25px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Dropdown Menu Styling */
+ul li ul.dropdown li {
+    display: block;
+}
+
+/* Hide dropdown by default */
+ul li ul.dropdown {
+    width: 100%;
+    background: white;
+    position: absolute;
+    top: 100%; /* Ensure dropdown opens just below the menu item */
+    left: 0;
+    z-index: 10000; /* Ensure dropdown appears above carousel and other elements */
+    display: none; /* Initially hidden */
+}
+
+/* Dropdown Hover Effect */
+ul li a:hover {
+    background-color: #b6b6b6;
+}
+
+/* Show dropdown on hover */
+ul li:hover ul.dropdown {
+    display: block;
+}
+.header {
+    margin-top:70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.cart{
+    cursor: pointer;
+}
+.header h1 {
+    margin: 0;
+}
+
+.header input[type="text"] {
+    padding: 5px;
+    font-size: 16px;
+}
+
+.header .cart {
+    font-size: 24px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.item {
+    background: rgb(173,38,38);
+    background: linear-gradient(180deg, rgba(173,38,38,1) 26%, rgba(0,115,123,1) 100%);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1; /* Ensure items take up equal space */
+    max-width: 300px; /* Maximum width for uniform size */
+    cursor: pointer;
+}
+
+.item img {
+    width: 100%; /* Make image responsive */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 300px; /* Set maximum height */
+    object-fit: cover; /* Cover to fill the area */
+    border-radius: 10px;
+}
+
+.item h2 {
+    color: #f4f4f4;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.item p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #ffffff;
+}

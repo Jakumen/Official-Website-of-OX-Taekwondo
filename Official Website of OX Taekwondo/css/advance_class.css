@@ -1,0 +1,276 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.class-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.content-wrapper {
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.left-section {
+    flex: 1;
+    padding: 30px;
+}
+
+h1 {
+    color: #cc0000;
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.activities-box {
+    background-color: #4a4a4a;
+    color: white;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.activities-box h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.activities-box ul {
+    list-style: none;
+}
+
+.activities-box li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.activities-box li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: white;
+}
+
+.description h3 {
+    color: #cc0000;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.description p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.right-section {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e6e6e6;
+}
+
+.right-section img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+    
+    .right-section {
+        margin-top: 20px;
+    }
+}
+
+.skill-levels-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.skill-content {
+    text-align: center;
+    padding: 30px;
+}
+
+.skill-content .logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.skill-content h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.skill-description {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+.skill-description p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #333;
+    text-transform: uppercase;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+@media (max-width: 768px) {
+    .skill-content {
+        padding: 20px;
+    }
+
+    .skill-content h2 {
+        font-size: 24px;
+    }
+
+    .skill-description p {
+        font-size: 12px;
+    }
+}
+
+.benefits-section {
+    background-color: #cc0000;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.benefits-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.intro-text {
+    font-size: 14px;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+}
+
+.benefit-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.benefit-card {
+    background-color: white;
+    color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.benefit-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #cc0000;
+    text-transform: uppercase;
+}
+
+.benefit-card p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.additional-benefits {
+    background-color: #fff;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.benefit-box {
+    background-color: #8b0000; /* Dark red background */
+    color: white;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.benefit-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Make the last two boxes span 2 columns */
+.benefit-box:nth-last-child(2),
+.benefit-box:last-child {
+    grid-column: span 2;
+}
+
+.benefit-box h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-align: center;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+}
+
+.benefit-box p {
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefit-box:nth-last-child(2),
+    .benefit-box:last-child {
+        grid-column: span 1;
+    }
+
+    .benefit-box {
+        padding: 20px;
+    }
+
+    .benefit-box h3 {
+        font-size: 16px;
+    }
+
+    .benefit-box p {
+        font-size: 13px;
+    }
+}

@@ -1,0 +1,173 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing:border-box;
+    font-family: Graduate;
+    color: azure;
+    text-decoration: none;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;  /* Set a very high z-index to stay on top of everything */
+    background: white;
+    color: black;
+    padding: 0px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Navbar Links Hover Effect */
+.navbar a:hover {
+    background: #b6b6b6;
+}
+
+/* Navigation Bar Container */
+.navdiv {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo Link Styles */
+.logo a {
+    font-size: 25px;
+    font-weight: 600;
+    color: black;
+}
+
+/* List Item Styles */
+li {
+    list-style: none;
+    display: inline-block;
+    align-items: center;
+}
+
+/* List Links */
+li a {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Main Navbar Menu List */
+ul {
+    list-style: none;
+    background: white;
+}
+
+/* List Item Container */
+ul li {
+    display: inline-block;
+    position: relative;  /* Ensures dropdown can be positioned correctly */
+}
+
+/* Dropdown Links */
+ul li a {
+    display: block;
+    padding: 20px 25px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Dropdown Menu Styling */
+ul li ul.dropdown li {
+    display: block;
+}
+
+/* Hide dropdown by default */
+ul li ul.dropdown {
+    width: 100%;
+    background: white;
+    position: absolute;
+    top: 100%; /* Ensure dropdown opens just below the menu item */
+    left: 0;
+    z-index: 10000; /* Ensure dropdown appears above carousel and other elements */
+    display: none; /* Initially hidden */
+}
+
+/* Dropdown Hover Effect */
+ul li a:hover {
+    background-color: #b6b6b6;
+}
+
+/* Show dropdown on hover */
+ul li:hover ul.dropdown {
+    display: block;
+}
+
+
+.benefits-section {
+    background-image: url('../Photo/BG3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.background-image {
+    position: relative;
+
+    background-position: center;
+    filter: brightness(25%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.benefits-section h1 {
+    position: relative;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    z-index: 1;
+}
+
+.benefit-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    width: 100%;
+    z-index: 1;
+}
+
+.benefit-card {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: white;
+}
+
+.number {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2em;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.benefit-card h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.benefit-card p {
+    margin-top: 5px;
+    font-size: 0.9em;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/events.css">
+    <title>OX Taekwondo Martial Arts</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navdiv">
+            <img src="../Photo/OX_LOGOO.png" alt="logo" width="50">
+            <div class="logo"><a href="index.html">OX Taekwondo Martial Arts</a></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="#">Classes ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="BeginnersClass.html">Beginners Class</a></li>
+                        <li><a href="#">Novice Class</a></li>
+                        <li><a href="#">Advance Class</a></li>
+                        <li><a href="OffSched.html">Class Schedule</a></li>
+                    </ul>
+                </li>
+                <li><a href="N.Events.html">Events</a></li>
+                <li><a href="#">Achievements</a></li>
+                <li>
+                    <a href="#">Shop ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="apparel.html">Apparel</a></li>
+                        <li><a href="gear.html">Gears</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact</a></li>
+                <li>
+                    <a href="#">About ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="instructor.html">Instructors</a></li>
+                        <li><a href="benefits.html">Benefits</a></li>
+                        <li><a href="testimonial.html">Testimonials</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br><br>
+    <div class="b1">
+        <div class="events">
+            <div class = "contain">
+            <h1>EVENTS</h1>
+            </div>
+            <div class="championship-list" id="event-list"> 
+                <p id="no-events-message" style="display: none;">Sorry, our club does not have any events for the meantime. Thank you.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve and display events
+        const events = JSON.parse(localStorage.getItem('events')) || [];
+        const eventList = document.getElementById('event-list');
+        const noEventsMessage = document.getElementById('no-events-message');
+
+        if (events.length === 0) {
+            noEventsMessage.style.display = 'block';
+        } else {
+            noEventsMessage.style.display = 'none';
+            events.forEach(event => {
+                const eventItem = document.createElement('div');
+                eventItem.classList.add('event-card');
+                eventItem.innerHTML = `
+                    <div class="event-photo">
+                        <img src="${event.photo}" alt="Event Photo">
+                    </div>
+                    <div class="event-info">
+                        <h2>${event.name}</h2>
+                        <p><strong>Date:</strong> ${new Date(event.date).toLocaleDateString()}</p>
+                        <p><strong>Location:</strong> ${event.location}</p>
+                        <p><strong>Time:</strong> ${event.time}</p>
+                        <p><strong>Experience Level:</strong> ${event.belt}</p>
+                    </div>
+                `;
+                eventList.appendChild(eventItem);
+            });
+        }
+    </script>
+</body>
+</html>

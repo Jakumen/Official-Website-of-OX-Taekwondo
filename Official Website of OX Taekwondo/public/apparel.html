@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apparel</title>
+    <link rel="stylesheet" href="../css/apparel.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navdiv">
+            <img src="../Photo/OX_LOGOO.png" alt="logo" width="50">
+            <div class="logo"><a href="index.html">OX Taekwondo Martial Arts</a></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="#">Classes ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="BeginnersClass.html">Beginners Class</a></li>
+                        <li><a href="#">Novice Class</a></li>
+                        <li><a href="#">Advance Class</a></li>
+                        <li><a href="OffSched.html">Class Schedule</a></li>
+                    </ul>
+                </li>
+                <li><a href="N.Events.html">Events</a></li>
+                <li><a href="#">Achievements</a></li>
+                <li>
+                    <a href="#">Shop ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="apparel.html">Apparel</a></li>
+                        <li><a href="gear.html">Gears</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact</a></li>
+                <li>
+                    <a href="#">About ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="instructor.html">Instructors</a></li>
+                        <li><a href="benefits.html">Benefits</a></li>
+                        <li><a href="testimonial.html">Testimonials</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="header">
+        <h1>APPAREL</h1>
+        <input type="text" id="searchBar" placeholder="Search" oninput="filterItems()">
+        <div class="cart" onclick="goToCart()">🛒</div>
+    </div>
+    <div class="container" id="productContainer">
+        <div class="item" data-name="OX TKD SHIRT" onclick="redirectToDetails('../Photo/Tshirt.png', 'OX TKD SHIRT', 700, 100)">
+            <img src="../Photo/Tshirt.png" alt="OX TKD SHIRT">
+            <h2>OX TKD SHIRT</h2>
+            <p>PHP 700</p>
+        </div>
+        <div class="item" data-name="OX TKD WARMER" onclick="redirectToDetails('../Photo/warmer.png', 'OX TKD WARMER', 750, 50)">
+            <img src="../Photo/warmer.png" alt="OX TKD WARMER">
+            <h2>OX TKD WARMER</h2>
+            <p>PHP 750</p>
+        </div>
+    </div>
+
+    <script>
+        function redirectToDetails(image, title, price, stock) {
+            window.location.href = `apparels.html?image=${image}&title=${encodeURIComponent(title)}&price=${price}&stock=${stock}`;
+        }
+
+        function filterItems() {
+            const searchValue = document.getElementById('searchBar').value.toLowerCase();
+            const items = document.querySelectorAll('.item');
+
+            items.forEach(item => {
+                const itemName = item.getAttribute('data-name').toLowerCase();
+                if (itemName.includes(searchValue)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        function goToCart() {
+            window.location.href = 'cart.html';
+        }
+    </script>
+</body>
+</html>

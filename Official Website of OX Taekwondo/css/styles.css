@@ -1,0 +1,204 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing:border-box;
+    font-family: Graduate;
+    text-decoration: none;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;  /* Set a very high z-index to stay on top of everything */
+    background: white;
+    color: black;
+    padding: 0px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Navbar Links Hover Effect */
+.navbar a:hover {
+    background: #b6b6b6;
+}
+
+/* Navigation Bar Container */
+.navdiv {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo Link Styles */
+.logo a {
+    font-size: 25px;
+    font-weight: 600;
+    color: black;
+}
+
+/* List Item Styles */
+li {
+    list-style: none;
+    display: inline-block;
+    align-items: center;
+}
+
+/* List Links */
+li a {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Main Navbar Menu List */
+ul {
+    list-style: none;
+    background: white;
+}
+
+/* List Item Container */
+ul li {
+    display: inline-block;
+    position: relative;  /* Ensures dropdown can be positioned correctly */
+}
+
+/* Dropdown Links */
+ul li a {
+    display: block;
+    padding: 20px 25px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Dropdown Menu Styling */
+ul li ul.dropdown li {
+    display: block;
+}
+
+/* Hide dropdown by default */
+ul li ul.dropdown {
+    width: 100%;
+    background: white;
+    position: absolute;
+    top: 100%; /* Ensure dropdown opens just below the menu item */
+    left: 0;
+    z-index: 10000; /* Ensure dropdown appears above carousel and other elements */
+    display: none; /* Initially hidden */
+}
+
+/* Dropdown Hover Effect */
+ul li a:hover {
+    background-color: #b6b6b6;
+}
+
+/* Show dropdown on hover */
+ul li:hover ul.dropdown {
+    display: block;
+}
+.container {
+    display: flex;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.cart{
+    padding-left: 300px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.details {
+    align-items: center;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+}
+.details h2,p{
+    padding-left: 125px;
+    border-right: 1px solid #ccc;
+}
+
+.details img {
+    width: 350px;
+    height: auto;
+}
+
+.info {
+    padding: 20px;
+}
+
+.info h1 {
+    margin-top: 0;
+}
+
+.sizes button {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.sizes button:hover {
+    background-color: #e0e0e0;
+}
+
+.actions button {
+    margin: 10px 5px 0 0;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#buyNow {
+    background-color: #00cc99;
+    color: white;
+}
+
+#addToCart {
+    background-color: #00aaff;
+    color: white;
+}
+/* Existing styles */
+
+.back-button {
+    background-color: #00796b;
+    color: white;
+    border: none;
+    max-width: 20%;
+    height: auto;
+    max-height: 30px;
+    padding: 10px 20px;
+    margin: 10px 0;
+    margin-left: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #004d40;
+}
+/* Existing styles */
+
+.size-button {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.size-button:hover, .size-button.active {
+    background-color: #d1d1d1;
+    border-color: #00796b;
+    color: #00796b;
+}

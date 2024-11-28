@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Gallery Management</title>
+    <link rel="stylesheet" href="../private css/gallery.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-user-shield"></i> Admin</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="Add.Event.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+            <li><a href="#"><i class="fas fa-trophy"></i> Achievements</a></li>
+            <li><a href="admin_gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+            <li class="dropdown">
+                <a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fas fa-tshirt"></i> Apparel</a></li>
+                    <li><a href="#"><i class="fas fa-box-open"></i> Gears</a></li>
+                    <li><a href="#"><i class="fas fa-subscript"></i> Subscription</a></li>
+                    <li><a href="#"><i class="fas fa-box"></i> Product</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1>Gallery Management</h1>
+        <div class="gallery">
+            <div class="container3">
+                <div class="overlay-text">
+                    <h1>Manage Gallery</h1>
+                </div>
+                <div class="image-grid" id="image-grid">
+                    <!-- Images will be dynamically loaded here -->
+                </div>
+                <div class="buttons">
+                    <input type="file" id="image-input" accept="image/*" style="display: none;">
+                    <button id="add-image" class="btn"><i class="fas fa-plus"></i> Add Image</button>
+                    <button id="confirm-changes" class="btn btn-confirm">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../private script/script_gallery.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+    <script>
+        // Function to redirect after payment confirmation
+        function redirectToHome() {
+            // Redirect to the home page after 3 seconds
+            setTimeout(function() {
+                window.location.href = "index.html";
+            }, 3000); // 3000 milliseconds = 3 seconds
+        }
+    </script>
+</head>
+<body onload="redirectToHome()">
+    <h1>Payment successfully received.</h1>
+    <p>You may now close this window. You will be redirected shortly...</p>
+</body>
+</html>

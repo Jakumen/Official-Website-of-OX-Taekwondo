@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apparel</title>
+    <link rel="stylesheet" href="../css/apparel.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navdiv">
+            <img src="../Photo/OX_LOGOO.png" alt="logo" width="50">
+            <div class="logo"><a href="index.html">OX Taekwondo Martial Arts</a></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="#">Classes ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="BeginnersClass.html">Beginners Class</a></li>
+                        <li><a href="#">Novice Class</a></li>
+                        <li><a href="#">Advance Class</a></li>
+                        <li><a href="OffSched.html">Class Schedule</a></li>
+                    </ul>
+                </li>
+                <li><a href="N.Events.html">Events</a></li>
+                <li><a href="#">Achievements</a></li>
+                <li>
+                    <a href="#">Shop ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="apparel.html">Apparel</a></li>
+                        <li><a href="gear.html">Gears</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact</a></li>
+                <li>
+                    <a href="#">About ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="instructor.html">Instructors</a></li>
+                        <li><a href="benefits.html">Benefits</a></li>
+                        <li><a href="testimonial.html">Testimonials</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="header">
+        <h1>GEARS</h1>
+        <input type="text" id="searchBar" placeholder="Search" oninput="filterItems()">
+        <div class="cart" onclick="goToCart()">🛒</div>
+    </div>
+    <div class="container" id="productContainer">
+        <div class="item" data-name="FULL GEAR SET" onclick="redirectToDetails('../Photo/fullgear.png', 'FULL GEAR SET', 5000, 100)">
+            <img src="../Photo/fullgear.png" alt="FULL GEAR SET">
+            <h2>FULL GEAR SET</h2>
+            <p>PHP 5000</p>
+        </div>
+        <div class="item" data-name="ARM/SHIN GUARD" onclick="redirectToDetails('../Photo/armshin.png', 'ARM/SHIN GUARD', 800, 50)">
+            <img src="../Photo/armshin.png" alt="ARM/SHIN GUARD">
+            <h2>ARM/SHIN GUARD</h2>
+            <p>PHP 800</p>
+        </div>
+        <div class="item" data-name="DOBOK" onclick="redirectToDetails('../Photo/dobok.png', 'DOBOK', 2000, 50)">
+            <img src="../Photo/dobok.png" alt="DOBOK">
+            <h2>DOBOK</h2>
+            <p>PHP 2000</p>
+        </div>
+        <div class="item" data-name="KICKPAD" onclick="redirectToDetails('../Photo/kickpad.png', 'KICKPAD', 600, 50)">
+            <img src="../Photo/kickpad.png" alt="KICKPAD">
+            <h2>KICKPAD</h2>
+            <p>PHP 600</p>
+        </div>
+        <div class="item" data-name="FOOT GLOVES" onclick="redirectToDetails('../Photo/footgloves.png', 'FOOT GLOVES', 800, 50)">
+            <img src="../Photo/footgloves.png" alt="FOOT GLOVES">
+            <h2>FOOT GLOVES</h2>
+            <p>PHP 800</p>
+        </div>
+    </div>
+
+    <script>
+        function redirectToDetails(image, title, price, stock) {
+            window.location.href = `gears.html?image=${image}&title=${encodeURIComponent(title)}&price=${price}&stock=${stock}`;
+        }
+
+        function filterItems() {
+            const searchValue = document.getElementById('searchBar').value.toLowerCase();
+            const items = document.querySelectorAll('.item');
+
+            items.forEach(item => {
+                const itemName = item.getAttribute('data-name').toLowerCase();
+                if (itemName.includes(searchValue)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        function goToCart() {
+            window.location.href = 'cart.html';
+        }
+    </script>
+</body>
+</html>

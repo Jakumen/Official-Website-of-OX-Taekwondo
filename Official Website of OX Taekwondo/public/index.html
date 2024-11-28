@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>OX TAEKWONDO CLUB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .carousel {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 3s ease-in-out;
+        }
+        .carousel iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        .carousel-indicators button {
+            width: 15px;
+            height: 15px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .carousel-indicators button.active {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navdiv">
+            <img src="../Photo/OX_LOGOO.png" alt="logo" width="50">
+            <div class="logo"><a href="index.html">OX Taekwondo Martial Arts</a></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="#">Classes ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="BeginnersClass.html">Beginners Class</a></li>
+                        <li><a href="#">Novice Class</a></li>
+                        <li><a href="#">Advance Class</a></li>
+                        <li><a href="OffSched.html">Class Schedule</a></li>
+                    </ul>
+                </li>
+                <li><a href="N.Events.html">Events</a></li>
+                <li><a href="#">Achievements</a></li>
+                <li>
+                    <a href="#">Shop ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="apparel.html">Apparel</a></li>
+                        <li><a href="gear.html">Gears</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact</a></li>
+                <li>
+                    <a href="#">About ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="instructor.html">Instructors</a></li>
+                        <li><a href="benefits.html">Benefits</a></li>
+                        <li><a href="testimonial.html">Testimonials</a></li>
+                    </ul>
+                </li>
+                <li><a href="login.html" class="login-button">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <iframe src="Promotion.html"></iframe>
+            <iframe src="Subok.html"></iframe>
+            <iframe src="events.html"></iframe>
+        </div>
+        <div class="carousel-indicators" id="indicators">
+            <button data-index="0" class="active"></button>
+            <button data-index="1"></button>
+            <button data-index="2"></button>
+        </div>
+    </div>
+    <div class = "Body1">
+        <div class="container2">
+            <div class="text-box" id="origins">
+                <h2>Origins</h2>
+                <p>Taekwondo originated in Korea thousands of years ago, blending combat, self-defense, and a distinct way of life.</p>
+            </div>
+            <div class="text-box" id="principles">
+                <h2>Principles</h2>
+                <p>Taekwondo emphasizes discipline, respect, a strong mind-body connection, mental focus, and physical strength.</p>
+            </div>
+            <div class="text-box" id="philosophy">
+                <h2>Philosophy</h2>
+                <p>Taekwondo transcends mere fighting techniques. It fosters personal growth, ethical conduct, etiquette, and lifelong self-improvement.</p>
+            </div>
+        </div>  
+    </div>
+    <div class = "gallery">
+        <div class="container3">
+            <div class="overlay-text">
+                <h1>Celebrating Our Achievements</h1>
+                <p>Our Taekwondo students and competitors have worked hard to earn their medals and trophies. Here's to their dedication and success!</p>
+            </div>
+            
+            <div class="image-grid" id = "public-gallery">
+
+            </div>
+            
+        </div>
+    </div>
+    <div id = section>
+        <div class="banner">
+            <h1>OX Taekwondo Programs</h1>
+            <div class="program-grid">
+                <div class="program">
+                    <img src="../Photo/beginners-class.jpg" alt="Beginners Class">
+                    <h2>Beginners Class</h2>
+                    <p>For introducing children to exercise, fitness, and basic Taekwondo in a structured environment.</p>
+                    <a href="BeginnerMedCert.php" class="proceed-btn" target="_top">Proceed</a>
+                    <br>
+                    <br>
+                    <br>
+                    <a href = "BeginnersClass.html" class = "learn-more"> Learn More </a>
+                </div>
+                <div class="program">
+                    <img src="../Photo/novice-class.jpg" alt="Novice Class">
+                    <h2>Novice Class</h2>
+                    <p>Focuses on using Taekwondo to build healthy life skills, coping mechanisms, and mental/physical development for leadership.</p>
+                    <button class="proceed-btn">Proceed</button>
+                    <br>
+                    <br>
+                    <a href = "#" class ="learn-more"> Learn More </a>
+                </div>
+                <div class="program">
+                    <img src="../Photo/advance-class.jpg" alt="Advance Class">
+                    <h2>Advance Class</h2>
+                    <p>For those looking to push their fitness goals and maximize physical and mental potential, integrating discipline into other areas of life.</p>
+                    <button class="proceed-btn">Proceed</button>
+                    <br>
+                    <br>
+                    <a href = "#" class ="learn-more"> Learn More </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+        const indicators = document.querySelectorAll('.carousel-indicators button');
+        let currentIndex = 0;
+        const slideCount = indicators.length;
+        const delay = 5000; // Time (in milliseconds) to pause on each slide
+        let interval;
+
+        function updateCarousel() {
+            const offset = -(100 / slideCount * currentIndex);
+            carousel.style.transform = `translateX(${offset}%)`;
+            indicators.forEach((button, index) => {
+                button.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function startCarousel() {
+            interval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % slideCount;
+                updateCarousel();
+            }, delay);
+        }
+
+        // Restart the carousel interval with a delay
+        function restartCarousel() {
+            clearInterval(interval);
+            setTimeout(() => {
+                startCarousel();
+            }, delay);
+        }
+
+        indicators.forEach(button => {
+            button.addEventListener('click', () => {
+                currentIndex = parseInt(button.getAttribute('data-index'));
+                updateCarousel();
+                restartCarousel();
+            });
+        });
+
+        updateCarousel();
+        startCarousel();
+
+        fetch('../PHP/fetch_images.php')
+        .then(response => response.json())
+        .then(data => {
+            const gallery = document.getElementById('public-gallery');
+            data.images.forEach(image => {
+                const imgElement = document.createElement('img');
+                imgElement.src = image.url; // Using the image URL returned by the PHP script
+                imgElement.alt = 'Gallery Image';
+                imgElement.classList.add('thumbnail');
+                gallery.appendChild(imgElement);
+            })
+        })
+        .catch(error => console.error('Error fetching images:', error));
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const gallery = document.getElementById('public-gallery');
+            let overlay = document.createElement('div');
+            overlay.className = 'overlay';
+            document.body.appendChild(overlay);
+
+            gallery.addEventListener('click', function(e) {
+                if (e.target.tagName === 'IMG') {
+                    const expandedImg = e.target.cloneNode();
+                    expandedImg.classList.add('expanded-image');
+                    overlay.style.display = 'block';
+                    overlay.appendChild(expandedImg);
+                }
+            });
+
+            overlay.addEventListener('click', function() {
+                this.style.display = 'none';
+                this.innerHTML = '';
+            });
+        });
+
+    </script>
+</body>
+</html>
